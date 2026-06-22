@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cinfluence — Social Media Management & Content Strategy</title>
+<meta name="description" content="Strategy-led social media management and content creation for brands ready to grow with purpose. Influence with intention."/>
+<link rel="stylesheet" href="style.css"/>
+<style>
+/* ── HOMEPAGE HERO ─────────────────────────────────── */
+.home-hero {
+  background: var(--espresso);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 140px 0 100px;
+}
+.home-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 90% at 80% 50%, rgba(178,147,91,.07), transparent),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(83,65,42,.3), transparent);
+  pointer-events: none;
+}
+.home-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 840px;
+}
+.home-hero .label { color: var(--gold); display: block; margin-bottom: 28px; }
+.home-hero h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -.03em;
+  color: var(--ivory);
+  margin-bottom: 32px;
+}
+.home-hero h1 em { color: var(--gold); font-style: italic; }
+.home-hero p {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: rgba(248,247,242,.55);
+  line-height: 1.85;
+  max-width: 520px;
+  margin-bottom: 48px;
+}
+.home-hero .btn-group { gap: 20px; }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(248,247,242,.3);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  animation: bob 2.5s ease-in-out infinite;
+}
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(178,147,91,.5), transparent);
+}
+@keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+/* ── CLIENT STRIP ──────────────────────────────────── */
+.client-strip {
+  background: var(--coffee);
+  padding: 28px 0;
+  overflow: hidden;
+  position: relative;
+}
+.client-strip::before,
+.client-strip::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.client-strip::before { left:0; background: linear-gradient(to right, var(--coffee), transparent); }
+.client-strip::after  { right:0; background: linear-gradient(to left, var(--coffee), transparent); }
+.client-strip-inner {
+  display: flex;
+  gap: 64px;
+  width: max-content;
+  animation: scrollLeft 35s linear infinite;
+  align-items: center;
+}
+.client-strip-inner:hover { animation-play-state: paused; }
+.client-strip .strip-label {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(248,247,242,.25);
+  flex-shrink: 0;
+}
+.client-strip .strip-name {
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: rgba(248,247,242,.55);
+  text-transform: uppercase;
+  flex-shrink: 0;
+  transition: color .2s;
+}
+.client-strip .strip-name:hover { color: var(--gold); }
+.strip-dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: .4;
+  flex-shrink: 0;
+}
+@keyframes scrollLeft { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── INTRO SECTION ─────────────────────────────────── */
+.home-intro { padding: 130px 0; }
+.home-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.home-intro-text .label { color: var(--gold); display: block; margin-bottom: 20px; }
+.home-intro-text h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+  margin-bottom: 28px;
+}
+.home-intro-text h2 em { color: var(--gold); font-style: italic; }
+.home-intro-text p { color: var(--taupe); line-height: 1.9; font-size: .97rem; margin-bottom: 16px; }
+.home-intro-text .btn { margin-top: 20px; }
+.home-intro-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--stone);
+}
+.stat-block {
+  background: var(--white);
+  padding: 40px 32px;
+  transition: background .3s;
+}
+.stat-block:hover { background: var(--ivory); }
+.stat-num {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num span { color: var(--gold); }
+.stat-desc { font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--taupe); line-height: 1.5; }
+
+/* ── SERVICES STRIP ────────────────────────────────── */
+.home-services { background: var(--stone); padding: 110px 0; }
+.svc-cards-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: rgba(83,65,42,.12);
+  margin-top: 64px;
+}
+.svc-card {
+  background: var(--white);
+  padding: 44px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: background .3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width .4s var(--ease);
+}
+.svc-card:hover { background: var(--ivory); }
+.svc-card:hover::after { width: 100%; }
+.svc-num {
+  font-family: var(--ff-serif);
+  font-size: 2.2rem;
+  color: var(--stone);
+  font-weight: 400;
+  line-height: 1;
+}
+.svc-card h3 {
+  font-family: var(--ff-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--espresso);
+}
+.svc-card p { font-size: .83rem; color: var(--taupe); line-height: 1.75; flex: 1; }
+.svc-card-link {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap .2s;
+}
+.svc-card:hover .svc-card-link { gap: 14px; }
+.svc-card-link::after { content: '→'; }
+
+/* ── PROCESS SECTION ───────────────────────────────── */
+.home-process { padding: 120px 0; background: var(--ivory); }
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0;
+  margin-top: 72px;
+  position: relative;
+}
+.process-steps::after {
+  content: '';
+  position: absolute;
+  top: 28px; left: 5%; right: 5%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--stone) 20%, var(--stone) 80%, transparent);
+}
+.process-step {
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+.step-dot {
+  width: 56px; height: 56px;
+  background: var(--white);
+  border: 1px solid var(--stone);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 28px;
+  transition: background .3s, border-color .3s;
+}
+.process-step:hover .step-dot { background: var(--espresso); border-color: var(--espresso); color: var(--gold); }
+.process-step h4 { font-family: var(--ff-serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 12px; }
+.process-step p  { font-size: .82rem; color: var(--taupe); line-height: 1.75; }
+
+/* ── TESTIMONIALS ──────────────────────────────────── */
+.home-testimonials { background: var(--espresso); padding: 110px 0; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 64px; }
+.testi-card {
+  background: rgba(248,247,242,.04);
+  border: 1px solid rgba(248,247,242,.07);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  transition: background .3s;
+}
+.testi-card:hover { background: rgba(248,247,242,.07); }
+.testi-quote {
+  font-family: var(--ff-serif);
+  font-size: 1.55rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.testi-text { font-size: .9rem; color: rgba(248,247,242,.65); line-height: 1.85; flex: 1; font-style: italic; }
+.testi-author { display: flex; flex-direction: column; gap: 4px; }
+.testi-name { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ivory); }
+.testi-role { font-size: .72rem; color: rgba(248,247,242,.35); letter-spacing: .06em; }
+
+/* ── CTA BAND ──────────────────────────────────────── */
+.home-cta {
+  background: var(--taupe);
+  padding: 100px 0;
+  text-align: center;
+}
+.home-cta h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 20px;
+  letter-spacing: -.025em;
+}
+.home-cta h2 em { color: var(--gold); font-style: italic; }
+.home-cta p { color: rgba(248,247,242,.6); margin-bottom: 44px; font-size: 1rem; }
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-intro-grid { grid-template-columns: 1fr; gap: 60px; }
+  .svc-cards-row { grid-template-columns: 1fr 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .process-steps::after { display: none; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .home-hero { min-height: auto; padding: 120px 0 80px; }
+  .home-intro-stats { grid-template-columns: 1fr 1fr; }
+  .svc-cards-row { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Cinfluence</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-primary">Book A Call</a>
+      <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="services.html" onclick="closeMenu()">Services</a>
+  <a href="work.html" onclick="closeMenu()">Work</a>
+  <a href="pricing.html" onclick="closeMenu()">Pricing</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <a href="contact.html" class="btn btn-primary" onclick="closeMenu()">Book A Call</a>
+</div>
+
+<!-- HERO -->
+<section class="home-hero">
+  <div class="home-hero-bg"></div>
+  <div class="container">
+    <div class="home-hero-inner fade-up">
+      <span class="label">Influence with Intention</span>
+      <h1>Social media that<br>actually <em>means</em><br>something.</h1>
+      <p>Strategy-led social media management and content creation for brands ready to grow with purpose — not just post for the sake of it.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="btn btn-gold">Book a Discovery Call</a>
+        <a href="services.html" class="btn btn-outline-light">See Our Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- CLIENT STRIP -->
+<div class="client-strip">
+  <div class="client-strip-inner">
+    <span class="strip-label">Trusted By</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Style State</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">W&amp;Co.</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Proper Ecom</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Flow</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Sales Igniters</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Epic Tales</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Rabble</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Hair Solution</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">iLuxe</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Stacked Science</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Dada's Mango</span>
+    <span class="strip-dot"></span>
+    <!-- duplicate for seamless loop -->
+    <span class="strip-label">Trusted By</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Style State</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">W&amp;Co.</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Proper Ecom</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Flow</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Sales Igniters</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Epic Tales</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Rabble</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Hair Solution</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">iLuxe</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Stacked Science</span>
+    <span class="strip-dot"></span>
+    <span class="strip-name">Dada's Mango</span>
+    <span class="strip-dot"></span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="home-intro">
+  <div class="container">
+    <div class="home-intro-grid fade-up">
+      <div class="home-intro-text">
+        <span class="label">The Cinfluence Difference</span>
+        <h2>Built on real experience.<br>Not a <em>template</em>.</h2>
+        <p>Before Cinfluence had a name, founder Cinth had a hustle. She started a store at 16, appeared on national television, built businesses across five industries, and only after all of that — launched a digital marketing agency.</p>
+        <p>That's not a backstory. That's the reason every strategy here is built on what actually works, not what sounds good in a deck.</p>
+        <a href="about.html" class="btn btn-outline">Read the Full Story</a>
+      </div>
+      <div class="home-intro-stats">
+        <div class="stat-block">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-desc">Industries<br>Navigated</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-desc">Brands<br>Worked With</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-desc">Strategy-First<br>Approach</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">1<span>×</span></div>
+          <div class="stat-desc">Boutique Agency,<br>Full Attention</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="home-services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">What We Do</span>
+      <h2 class="heading-lg">Services built for <em>real</em> growth</h2>
+      <p class="body-sm" style="margin-top:16px;max-width:500px">We don't offer one-size-fits-all packages. We offer strategic thinking paired with creative execution — tailored to where your brand actually is.</p>
+    </div>
+    <div class="svc-cards-row fade-up">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <h3>Social Media Management</h3>
+        <p>End-to-end management — strategy, content, scheduling, community. We handle everything so you can run your business.</p>
+        <a href="services.html" class="svc-card-link">Learn More</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <h3>Short-Form Content & Reels</h3>
+        <p>Reels, TikToks, and Stories produced for the algorithm and your audience — not repurposed, not templated.</p>
+        <a href="services.html" class="svc-card-link">Learn More</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <h3>AI-Powered Content Production</h3>
+        <p>High-volume content at consistent quality, powered by AI and reviewed by a human strategist who knows your brand.</p>
+        <a href="services.html" class="svc-card-link">Learn More</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <h3>Strategy & Consulting</h3>
+        <p>Audit what's not working. Chart a clearer path. Build a content system that earns attention instead of begging for it.</p>
+        <a href="services.html" class="svc-card-link">Learn More</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="fade-up">
+      <a href="services.html" class="btn btn-outline">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="home-process">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">How We Work</span>
+      <h2 class="heading-lg">The process behind<br>the <em>results</em></h2>
+    </div>
+    <div class="process-steps fade-up">
+      <div class="process-step">
+        <div class="step-dot">01</div>
+        <h4>Discovery Call</h4>
+        <p>We start by understanding your brand, goals, current challenges, and what success actually looks like for you — not a generic metric.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">02</div>
+        <h4>Strategy Build</h4>
+        <p>A custom social strategy aligned to your brand voice, audience, and platform — built before a single piece of content is created.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">03</div>
+        <h4>Content Creation</h4>
+        <p>We produce, write, design, and schedule. Every post has a purpose. Every caption has a strategy behind it.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-dot">04</div>
+        <h4>Optimise & Report</h4>
+        <p>Monthly reporting with real insights — not vanity metrics. We track what moves the needle and adjust every 30 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="home-testimonials">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="label">Client Results</span>
+      <h2 class="heading-lg" style="color:var(--ivory)">What clients say<br>after working with <em style="color:var(--gold)">us</em></h2>
+    </div>
+    <div class="testimonials-grid fade-up">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Cinth didn't just manage our social media — she rebuilt our entire brand narrative. Within three months, we saw a real shift in how our audience engaged with us.</p>
+        <div class="testi-author">
+          <span class="testi-name">Fashion Brand Client</span>
+          <span class="testi-role">E-Commerce / Fashion</span>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">What stands out is the strategy-first approach. No fluff, no vanity metrics — just clear thinking about what actually grows a brand.</p>
+        <div class="testi-author">
+          <span class="testi-name">E-Commerce Founder</span>
+          <span class="testi-role">E-Commerce / Supplements</span>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">We hired Cinth to fix our content. She ended up helping us understand who we are as a brand. That changed everything about how we show up online.</p>
+        <div class="testi-author">
+          <span class="testi-name">Services Business Owner</span>
+          <span class="testi-role">Professional Services</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="home-cta">
+  <div class="container fade-up">
+    <h2>Ready to grow<br>with <em>intention</em>?</h2>
+    <p>Book a free 30-minute discovery call. No pitch, no pressure — just a real conversation about your brand.</p>
+    <div class="btn-group" style="justify-content:center">
+      <a href="https://calendly.com/hyacinth-cinfluencedigital/discovery-call" target="_blank" class="btn btn-ivory">Book a Discovery Call</a>
+      <a href="pricing.html" class="btn btn-outline-light">View Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo">Cinfluence</span>
+        <p class="footer-tagline">Strategy-led social media management and content production. Influence with intention.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul class="footer-links">
+          <li><a href="services.html">Social Media Management</a></li>
+          <li><a href="services.html">Short-Form Content</a></li>
+          <li><a href="services.html">AI Content Production</a></li>
+          <li><a href="services.html">Influencer &amp; UGC</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul class="footer-links">
+          <li><a href="https://instagram.com/cinfluence.digital" target="_blank">Instagram</a></li>
+          <li><a href="https://tiktok.com/@cinfluence.digital" target="_blank">TikTok</a></li>
+          <li><a href="https://linkedin.com/company/cinfluencedigital" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:hello@cinfluencedigital.com">hello@cinfluencedigital.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cinfluence. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://instagram.com/cinfluence.digital" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@cinfluence.digital" target="_blank">TikTok</a>
+        <a href="mailto:hello@cinfluencedigital.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
