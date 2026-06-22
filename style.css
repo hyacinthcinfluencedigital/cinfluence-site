@@ -17,7 +17,7 @@ html { scroll-behavior: smooth; }
   --coffee:   #32251A;
   --stone:    #E3DFD9;
   --taupe:    #53412A;
-  --gold:     #B2935B;
+  --gold:     #B8935A;
   --ff-serif: 'Libre Baskerville', Georgia, serif;
   --ff-sans:  'Montserrat', sans-serif;
   --ease:     cubic-bezier(.25,.46,.45,.94);
@@ -215,7 +215,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(38,28,19,.08); }
 }
 .page-hero-bg {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(178,147,91,.06), transparent);
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(184,147,90,.06), transparent);
   pointer-events: none;
 }
 .page-hero .label { color: var(--gold); display: block; margin-bottom: 20px; }
